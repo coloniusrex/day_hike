@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe Trail, type: :model do
+RSpec.describe Trail, type: :model do
   describe 'validations' do
     it { should validate_presence_of :length }
     it { should validate_presence_of :name }
@@ -8,5 +8,11 @@ describe Trail, type: :model do
 
     it { should validate_numericality_of(:length).only_integer }
     it { should validate_numericality_of(:length).is_greater_than(0) }
+
+  end
+
+  describe 'relationships' do
+    it { should have_many :trip_trails}
+    it { should have_many(:trips).through(:trip_trails)}
   end
 end

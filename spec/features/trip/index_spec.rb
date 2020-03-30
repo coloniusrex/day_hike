@@ -8,14 +8,14 @@ RSpec.describe "As a visitor on the hiking trips index page", type: :feature do
 
     visit "/trips"
 
-    within('.hike-trip-all') do
-      within("#hike-trip-#{trip_1.id}") do
+    within('.trip-trails-all') do
+      within("#trip-trail-#{trip_1.id}") do
         expect(page).to have_content(trip_1.name)
       end
-      within("#hike-trip-#{trip_2.id}") do
+      within("#trip-trail-#{trip_2.id}") do
         expect(page).to have_content(trip_2.name)
       end
-      within("#hike-trip-#{trip_3.id}") do
+      within("#trip-trail-#{trip_3.id}") do
         expect(page).to have_content(trip_3.name)
       end
     end
@@ -28,8 +28,8 @@ RSpec.describe "As a visitor on the hiking trips index page", type: :feature do
 
     visit "/trips"
 
-    within('.hike-trip-all') do
-      within("#hike-trip-#{trip_1.id}") do
+    within('.trip-trails-all') do
+      within("#trip-trail-#{trip_1.id}") do
         click_link trip_1.name
       end
     end
@@ -38,8 +38,8 @@ RSpec.describe "As a visitor on the hiking trips index page", type: :feature do
 
     visit "/trips"
 
-    within('.hike-trip-all') do
-      within("#hike-trip-#{trip_2.id}") do
+    within('.trip-trails-all') do
+      within("#trip-trail-#{trip_2.id}") do
         click_link trip_2.name
       end
     end

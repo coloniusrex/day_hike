@@ -1,6 +1,6 @@
-<section class="hike-trip-all">
+<section class="trip-trails-all">
   <% @trips.each do |trip| %>
-    <section id="hike-trip-<%= trip.id %>">
+    <section id="trip-trail-<%= trip.id %>">
       <p><%= link_to trip.name, "/trips/#{trip.id}" %></p>
     </section>
   <% end %>
