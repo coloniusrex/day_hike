@@ -3,4 +3,5 @@ Rails.application.routes.draw do
 
   #trips
   get '/trips', to: 'trips#index'
+  get '/trips/:trip_id', to: 'trips#show'
 end
