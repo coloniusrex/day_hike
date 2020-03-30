@@ -1,7 +1,10 @@
+<section class="total-distance-counter">
+  <p>Total trip distance: <%= @trip.total_distance %></p>
+</section>
 <section class='trails-all'>
   <% @trip.trails.each do |trail| %>
     <section id="trail-<%= trail.id %>">
-    <p><%= @trip.name %></p>
+    <h3><%= @trip.name %></h3>
     <p><%= trail.name %></p>
     <p><%= trail.address %></p>
     <p><%= trail.length %></p>
