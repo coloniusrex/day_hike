@@ -1,0 +1,7 @@
+<section class="hike-trip-all">
+  <% @trips.each do |trip| %>
+    <section id="hike-trip-<%= trip.id %>">
+      <p><%= trip.name %></p>
+    </section>
+  <% end %>
+</section>
