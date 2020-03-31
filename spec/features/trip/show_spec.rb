@@ -35,4 +35,19 @@ RSpec.describe "As a visitor on the hiking trips show page", type: :feature do
       expect(page).to have_content("Total trip distance: #{trip_distance}")
     end
   end
+
+  it "I can see the average hiking distance of all trails on that trip" do
+    trip_1 = Trip.create(name:"Easter Weekend")
+    trail_1 = trip_1.trails.create(name:"Rocky Point", address: 'address', length:6)
+    trail_2 = trip_1.trails.create(name:"Shallow Gulf", address: 'address', length:7)
+    trail_3 = trip_1.trails.create(name:"Timberline", address: 'address', length:2)
+    trip_distance = trail_1.length + trail_2.length + trail_3.length
+    avg_trip_distance = trip_distance / trip_1.trails.length
+
+    visit "/trips/#{trip_1.id}"
+
+    within('.avg-distance-counter')do
+      expect(page).to have_content("Average trip distance: #{avg_trip_distance}")
+    end
+  end
 end

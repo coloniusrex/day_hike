@@ -6,8 +6,12 @@ class Trip < ApplicationRecord
 
   def total_distance
     total_dist = 0
-    trails.each {|trail| total_dist += trail.length}
+    trails.map {|trail| total_dist += trail.length.to_i}
     total_dist
+  end
+
+  def avg_distance
+    (total_distance.to_f / trails.length).round(1)
   end
 
 end

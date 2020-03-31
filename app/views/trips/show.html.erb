@@ -1,6 +1,9 @@
 <section class="total-distance-counter">
   <p>Total trip distance: <%= @trip.total_distance %></p>
 </section>
+<section class="avg-distance-counter">
+  <p>Average trip distance: <%= @trip.avg_distance %></p>
+</section>
 <section class='trails-all'>
   <% @trip.trails.each do |trail| %>
     <section id="trail-<%= trail.id %>">
