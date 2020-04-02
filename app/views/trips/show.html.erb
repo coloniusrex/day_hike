@@ -7,12 +7,12 @@
 <% if @trip.trails.present? %>
   <section class="trip-highlight-trails">
     <section class="trip-longest-trail">
-      <p>Longest Trail on Trip</p>
+      <h4>Longest Trail on Trip</h4>
       <p>Name: <%= @trip.longest_trail.name %></p>
       <p>Length: <%= @trip.longest_trail.length %></p>
     </section>
     <section class="trip-shortest-trail">
-      <p>Longest Trail on Trip</p>
+      <h4>Shortest Trail on Trip</h4>
       <p>Name: <%= @trip.shortest_trail.name %></p>
       <p>Length: <%= @trip.shortest_trail.length %></p>
     </section>

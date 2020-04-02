@@ -1,0 +1,16 @@
+<section class="trail-info">
+  <h3>Trail Name: <%= @trail.name %></h3>
+  <p>Address: <%= @trail.address %></p>
+</section>
+<section class="connected-trips">
+  <section class="connected-trip-counter">
+    <h4>Trips with this Trail</h4>
+    <p>Total: <%= @trail.trips_taken.count %></p>
+  </section>
+  <p> Trip Name, Length</p>
+  <%- @trail.trips_taken.each do |trip| %>
+    <section id="connected-trip-<%= trip.id %>">
+      <p><%= trip.name %>, <%= trip.total_distance %></p>
+    </section>
+  <%- end %>
+</section>
