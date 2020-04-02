@@ -12,7 +12,7 @@ RSpec.describe Trail, type: :model do
   end
 
   describe 'relationships' do
-    it { should have_many :trip_trails}
-    it { should have_many(:trips).through(:trip_trails)}
+    it { should have_many :trips}
+    it { should have_many(:trips).through(:trips_trails)}
   end
 end

@@ -50,4 +50,74 @@ RSpec.describe "As a visitor on the hiking trips show page", type: :feature do
       expect(page).to have_content("Average trip distance: #{avg_trip_distance}")
     end
   end
+
+  it "I can see a heading 'Longest Trail on Trip' with name and length of longest trip" do
+    trip_1 = Trip.create(name:"Easter Weekend")
+    trail_1 = trip_1.trails.create(name:"Rocky Point", address: 'address', length:6)
+    trail_2 = trip_1.trails.create(name:"Shallow Gulf", address: 'address', length:7)
+    trail_3 = trip_1.trails.create(name:"Timberline", address: 'address', length:2)
+
+    visit "/trips/#{trip_1.id}"
+
+    within('.trip-highlight-trails') do
+      within('.trip-longest-trail') do
+        expect(page).to have_content("Name: #{trail_2.name}")
+        expect(page).to have_content("Length: #{trail_2.length}")
+      end
+    end
+  end
+
+  it "I can see a heading 'Shortest Trail on Trip' with name and length of longest trip" do
+    trip_1 = Trip.create(name:"Easter Weekend")
+    trail_1 = trip_1.trails.create(name:"Rocky Point", address: 'address', length:6)
+    trail_2 = trip_1.trails.create(name:"Shallow Gulf", address: 'address', length:7)
+    trail_3 = trip_1.trails.create(name:"Timberline", address: 'address', length:2)
+
+    visit "/trips/#{trip_1.id}"
+
+    within('.trip-highlight-trails') do
+      within('.trip-shortest-trail') do
+        expect(page).to have_content("Name: #{trail_3.name}")
+        expect(page).to have_content("Length: #{trail_3.length}")
+      end
+    end
+  end
+
+  it "I can click on the name of each trail and be taken to that trails show page" do
+    trip_1 = Trip.create(name:"Easter Weekend")
+    trail_1 = trip_1.trails.create(name:"Rocky Point", address: 'address', length:6)
+    trail_2 = trip_1.trails.create(name:"Shallow Gulf", address: 'address', length:7)
+    trail_3 = trip_1.trails.create(name:"Timberline", address: 'address', length:2)
+
+    visit "/trips/#{trip_1.id}"
+
+    within('.trails-all') do
+      within("#trail-#{trail_1.id}") do
+        click_link "#{trail_1.name}"
+      end
+    end
+
+    expect(current_path).to eql("/trails/#{trail_1.id}")
+
+    visit "/trips/#{trip_1.id}"
+
+    within('.trails-all') do
+      within("#trail-#{trail_2.id}") do
+        click_link "#{trail_2.name}"
+      end
+    end
+
+    expect(current_path).to eql("/trails/#{trail_2.id}")
+
+    visit "/trips/#{trip_1.id}"
+
+    within('.trails-all') do
+      within("#trail-#{trail_3.id}") do
+        click_link "#{trail_3.name}"
+      end
+    end
+
+    expect(current_path).to eql("/trails/#{trail_3.id}")
+
+  end
 end
